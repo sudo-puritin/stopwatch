@@ -4,7 +4,7 @@ function Lap({ laps }) {
   return (
     <div
       className="lapsWrapper"
-      style={{ display: laps.length ? "block" : "none" }}
+      style={{ display: laps?.length ? "block" : "none" }}
     >
       <div className="title">
         <div>Lap</div>
@@ -12,7 +12,7 @@ function Lap({ laps }) {
       </div>
       <div className="lapList">
         <ul>
-          {laps.map((lap, index) => (
+          {laps?.map((lap, index) => (
             <li key={index}>
               <div>{`${index + 1}`}</div>
               <div>{lap}</div>

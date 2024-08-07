@@ -1,23 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import useTimer from "./useTimer";
 import { formatTime } from "./formatTime";
 import Lap from "./Lap";
 
 function App() {
-  const { time, startTimer, stopTimer, resetTimer, active } = useTimer(0);
-
-  const [laps, setLaps] = useState([]);
-
-  const handleLap = () => {
-    const lapTime = formatTime(time);
-    resetTimer();
-    startTimer();
-
-    setLaps((prevLaps) => [...prevLaps, lapTime]);
-  };
-  const handleResetLap = () => {
-    setLaps([]);
-  };
+  const { time, laps, active, startTimer, stopTimer, resetTimer, lapTimer } =
+    useTimer(0);
 
   return (
     <div className="App container">
@@ -26,23 +14,23 @@ function App() {
         <div className="timer__display">
           <p>{formatTime(time)}</p>
         </div>
+        {/* <div
+          className="lap__timer_display"
+          style={{ display: laps?.length ? "block" : "none" }}
+        >
+          {formatTime(time)}
+        </div> */}
         <div className="button__wrapper">
           <button className="button" onClick={stopTimer}>
             Stop
           </button>
-          <button className="button" onClick={handleLap}>
+          <button className="button" onClick={lapTimer}>
             Lap
           </button>
           <button className="button" ref={active} onClick={startTimer}>
             Start
           </button>
-          <button
-            className="button"
-            onClick={() => {
-              resetTimer();
-              handleResetLap();
-            }}
-          >
+          <button className="button" onClick={resetTimer}>
             Reset
           </button>
         </div>
